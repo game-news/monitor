@@ -316,4 +316,9 @@ DATA_PATH = '/data'
 # 'postgres://username:password@127.0.0.1:5432'
 # 'sqlite:///C:/Users/username'
 # 'sqlite:////home/username'
-DATABASE_URL = 'sqlite:////data/data.db'
+DATABASE_URL = {
+    "APSCHEDULER_DATABASE_URI": "sqlite:////data/database/apscheduler.db",
+    "SQLALCHEMY_DATABASE_URI": "sqlite:////data/database/timer_tasks.db",
+    "SQLALCHEMY_BINDS_METADATA": "sqlite:////data/database/metadata.db",
+    "SQLALCHEMY_BINDS_JOBS": "sqlite:////data/database/jobs.db"
+}
