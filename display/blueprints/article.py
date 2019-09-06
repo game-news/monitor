@@ -3,7 +3,6 @@ from display.models import Article
 
 article_bp = Blueprint('article', __name__)
 
-
 @article_bp.route('/')
 def index():
     page = 0

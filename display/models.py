@@ -13,3 +13,4 @@ class Article(db.Document):
     content = db.StringField()  # 文章内容
     category = db.StringField()  # 文章类型
     publish_time = db.StringField()  # 发布时间
+
