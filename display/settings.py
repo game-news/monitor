@@ -14,6 +14,7 @@ class BaseConfig(object):
         'host': 'mongodb://root:123456@centos-l5-vm-01.niracler.com:27017/spider?authSource=admin'
     }
 
+    MONGO_URI = 'mongodb://root:123456@centos-l5-vm-01.niracler.com:27017/spider?authSource=admin'
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.db')
