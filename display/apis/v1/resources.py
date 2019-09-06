@@ -1,3 +1,5 @@
+import os
+
 from display.extensions import Resource, mongo
 import redis
 
@@ -18,4 +20,6 @@ class MongoMonitor(Resource):
 
 class RedisMonitor(Resource):
     def get(self):
-        return {'redis': 'redis'}
+        client = redis.Redis(host='plrom.niracler.com', port='6379', password='123456')
+        keys = client.keys()
+        return {'redis': str(keys)}
