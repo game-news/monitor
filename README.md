@@ -111,3 +111,5 @@ systemctl restart docker
 - [Scrapyd手册](https://scrapyd.readthedocs.io/en/stable/install.html)
 - [Flask-RESTful](https://flask-restful.readthedocs.io/en/latest/index.html)
 - [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
+- [What is the difference between a string and a byte string?](https://stackoverflow.com/questions/6224052/what-is-the-difference-between-a-string-and-a-byte-string/31322359)
+- [flask-apispec](https://flask-apispec.readthedocs.io)
