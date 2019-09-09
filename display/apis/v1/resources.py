@@ -15,7 +15,6 @@ class MongoMonitor(MethodResource):
         :return:
         """
         names = mongo.db.collection_names()
-
         results = []
 
         for name in names:

@@ -2,13 +2,12 @@ import os
 
 from flask import Flask, Blueprint
 from display.settings import config
-from display.extensions import toolbar, bootstrap, db, moment, ckeditor, mail, mongo, api, CORS, docs
+from display.extensions import toolbar, bootstrap, db, moment, ckeditor, mail, mongo, api, docs, cors
 from display.commands import register_commands
 from display.blueprints.article import article_bp
 from display.apis.v1.resources import HelloWorld, MongoMonitor, RedisMonitor
 
 api_bp = Blueprint('api', __name__)
-CORS(api_bp)
 api.init_app(api_bp)
 
 
@@ -33,7 +32,6 @@ def create_app(config_name=None):
     register_blueprints(app)  # 注册蓝本
     register_docs(app)  # 注册api文档
 
-
     return app
 
 
@@ -51,6 +49,7 @@ def register_extensions(app):
     mail.init_app(app)
     mongo.init_app(app)
     docs.init_app(app)
+    cors.init_app(app)
 
 
 def register_blueprints(app):
@@ -69,7 +68,9 @@ def register_api(app):
     api.add_resource(MongoMonitor, '/mongo')
     api.add_resource(RedisMonitor, '/redis')
 
+
 def register_docs(app):
+    """注册到api文档中"""
     docs.register(HelloWorld, blueprint='api')
     docs.register(MongoMonitor, blueprint='api')
     docs.register(RedisMonitor, blueprint='api')
