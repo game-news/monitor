@@ -1,7 +1,12 @@
+import math
 import os
 from flask import jsonify
-from display.extensions import Resource, mongo, MethodResource
+from display.extensions import Resource, mongo, MethodResource, reqparse
 import redis
+
+parser = reqparse.RequestParser()
+parser.add_argument('page', type=int)
+parser.add_argument('per_page', type=int)
 
 
 class Entity(MethodResource):
@@ -11,24 +16,40 @@ class Entity(MethodResource):
     """
 
     def get(self):
-        names = [
-            'games_3dm_ol',
-            'games_3dm_console',
-            'games_3dm_shouyou',
-            'gamesky',
-        ]
+        args = parser.parse_args()
+        if args.page:
+            page = args.page
+        else:
+            page = 1
+
+        if args.per_page:
+            per_page = args.per_page
+        else:
+            per_page = 10
+
         results = []
+        coll = mongo.db.get_collection('entity')
+        count = coll.find({}).count()
 
-        for name in names:
-            coll = mongo.db.get_collection(name)
+        for i in list(coll.find({}).skip((page - 1) * per_page).limit(per_page)):
+            i['_id'] = str(i['_id'])
+            results.append(dict(i))
 
-            for i in list(coll.find({})):
-                i['_id'] = str(i['_id'])
-                results.append(dict(i))
+        if page > 1:
+            previous = "http://plrom.niracler.com:5555/api/entity?page={}".format(page-1)
+        else:
+            previous = None
+
+        if page < math.ceil(count/per_page):
+            next = "http://plrom.niracler.com:5555/api/entity?page={}".format(page+1)
+        else:
+            next = None
 
         return jsonify({
+            'next': next,
+            'previous': previous,
             'results': results,
-            'count': len(results),
+            'count': count,
         })
 
 
@@ -47,7 +68,6 @@ class MongoMonitor(MethodResource):
 
         for name in names:
             item = {}
-            mongo.db.get_collection(name)
 
             item['name'] = name
             item['count'] = mongo.db.command("collstats", name)['count']
