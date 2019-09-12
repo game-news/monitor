@@ -113,3 +113,4 @@ systemctl restart docker
 - [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
 - [What is the difference between a string and a byte string?](https://stackoverflow.com/questions/6224052/what-is-the-difference-between-a-string-and-a-byte-string/31322359)
 - [flask-apispec](https://flask-apispec.readthedocs.io)
+- [TypeError: ObjectId('') is not JSON serializable](https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable)

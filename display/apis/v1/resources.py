@@ -4,6 +4,34 @@ from display.extensions import Resource, mongo, MethodResource
 import redis
 
 
+class Entity(MethodResource):
+    """
+    各种实体的接口
+    应该将这些实体特地的有规则地命名
+    """
+
+    def get(self):
+        names = [
+            'games_3dm_ol',
+            'games_3dm_console',
+            'games_3dm_shouyou',
+            'gamesky',
+        ]
+        results = []
+
+        for name in names:
+            coll = mongo.db.get_collection(name)
+
+            for i in list(coll.find({})):
+                i['_id'] = str(i['_id'])
+                results.append(dict(i))
+
+        return jsonify({
+            'results': results,
+            'count': len(results),
+        })
+
+
 class HelloWorld(MethodResource):
     def get(self):
         return {'hello': 'world'}
@@ -46,12 +74,14 @@ class RedisMonitor(MethodResource):
 
             if item['type'] == 'set':
                 item['length'] = client.scard(key)
-            if item['type'] == 'list':
+            elif item['type'] == 'list':
                 item['length'] = client.llen(key)
-            if item['type'] == 'zset':
+            elif item['type'] == 'zset':
                 item['length'] = client.zcard(key)
-            if item['type'] == 'set':
+            elif item['type'] == 'set':
                 item['length'] = client.scard(key)
+            else:
+                item['length'] = 1
 
             results.append(item)
 

@@ -8,6 +8,7 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASK_DEBUG = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
+    JSON_AS_ASCII = False
 
     MONGODB_SETTINGS = {
         'db': 'spider',

@@ -5,7 +5,7 @@ from display.settings import config
 from display.extensions import toolbar, bootstrap, db, moment, ckeditor, mail, mongo, api, docs, cors
 from display.commands import register_commands
 from display.blueprints.article import article_bp
-from display.apis.v1.resources import HelloWorld, MongoMonitor, RedisMonitor
+from display.apis.v1.resources import HelloWorld, MongoMonitor, RedisMonitor, Entity
 
 api_bp = Blueprint('api', __name__)
 api.init_app(api_bp)
@@ -67,6 +67,7 @@ def register_api(app):
     api.add_resource(HelloWorld, '/hello')
     api.add_resource(MongoMonitor, '/mongo')
     api.add_resource(RedisMonitor, '/redis')
+    api.add_resource(Entity, '/entity')
 
 
 def register_docs(app):
@@ -74,3 +75,4 @@ def register_docs(app):
     docs.register(HelloWorld, blueprint='api')
     docs.register(MongoMonitor, blueprint='api')
     docs.register(RedisMonitor, blueprint='api')
+    docs.register(Entity, blueprint='api')
