@@ -64,10 +64,10 @@ def register_blueprints(app):
 
 def register_api(app):
     """注册api"""
-    api.add_resource(HelloWorld, '/hello')
-    api.add_resource(MongoMonitor, '/mongo')
-    api.add_resource(RedisMonitor, '/redis')
-    api.add_resource(Entity, '/entity')
+    api.add_resource(HelloWorld, '/hello/')
+    api.add_resource(MongoMonitor, '/mongo/')
+    api.add_resource(RedisMonitor, '/redis/')
+    api.add_resource(Entity, '/entity/')
 
 
 def register_docs(app):

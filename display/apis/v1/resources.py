@@ -25,7 +25,7 @@ class Entity(MethodResource):
         if args.per_page:
             per_page = args.per_page
         else:
-            per_page = 10
+            per_page = 16
 
         results = []
         coll = mongo.db.get_collection('entity')

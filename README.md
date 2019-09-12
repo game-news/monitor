@@ -114,3 +114,4 @@ systemctl restart docker
 - [What is the difference between a string and a byte string?](https://stackoverflow.com/questions/6224052/what-is-the-difference-between-a-string-and-a-byte-string/31322359)
 - [flask-apispec](https://flask-apispec.readthedocs.io)
 - [TypeError: ObjectId('') is not JSON serializable](https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable)
+- [python的取整函数：向上取整，向下取整，四舍五入取整](https://blog.csdn.net/guizaijianchic/article/details/71191807)
