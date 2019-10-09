@@ -9,6 +9,7 @@ class BaseConfig(object):
     FLASK_DEBUG = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     JSON_AS_ASCII = False
+    DSN = os.getenv('DSN')
 
     MONGODB_SETTINGS = {
         'db': 'spider',

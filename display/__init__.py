@@ -6,6 +6,8 @@ from display.extensions import toolbar, bootstrap, db, moment, ckeditor, mail, m
 from display.commands import register_commands
 from display.blueprints.article import article_bp
 from display.apis.v1.resources import HelloWorld, MongoMonitor, RedisMonitor, Entity
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 api_bp = Blueprint('api', __name__)
 api.init_app(api_bp)
@@ -25,6 +27,11 @@ def create_app(config_name=None):
     app.config.from_object(config[config_name])
     app.jinja_env.trim_blocks = True
     app.jinja_env.lstrip_blocks = True
+
+    sentry_sdk.init(
+        dsn=app.config["DSN"],
+        integrations=[FlaskIntegration()]
+    )
 
     register_extensions(app)  # 注册扩展
     register_commands(app)  # 注册自定义命令行
