@@ -43,10 +43,10 @@ PASSWORD = ''
 #   - it's recommended to pass in a tuple of 5 elements.
 #   - e.g. ('', '', '127.0.0.1', '6800', '') or ('username', 'password', 'localhost', '6801', 'group')
 SCRAPYD_SERVERS = [
-    'centos-l5-vm-01.niracler.com:6801',
-    'centos-l5-vm-01.niracler.com:6802',
-    'centos-l5-vm-01.niracler.com:6803',
-    'centos-l5-vm-01.niracler.com:6804',
+    'plrom.niracler.com:6801',
+    'plrom.niracler.com:6802',
+    'plrom.niracler.com:6803',
+    'plrom.niracler.com:6804',
     # 'username:password@localhost:6801#group',
     # ('username', 'password', 'localhost', '6801', 'group'),
 ]

@@ -54,7 +54,7 @@ redis
 
 ```bash
 $sudo pacman -S redis # 安装redis
-$redis-cli -h centos-l5-vm-01.niracler.com  -p 6379 -a 123456
+$redis-cli -h plrom.niracler.com  -p 6379 -a 123456
 $SET runoobkey redis  #OK
 $redis 127.0.0.1:6379> GET runoobkey #"redis"
 ```
