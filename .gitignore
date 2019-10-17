@@ -110,3 +110,6 @@ venv.bak/
 *.iws
 
 *.db
+
+nginx/cert/gamenews.key
+nginx/cert/gamenews.pem
