@@ -13,7 +13,7 @@ RUN mkdir $APP
 WORKDIR $APP
 
 # Expose the port uWSGI will listen on
-EXPOSE 5000
+EXPOSE 5555
 
 # Copy the requirements file in order to install
 # Python dependencies
@@ -22,6 +22,4 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-# Finally, we run uWSGI with the ini file we
-# created earlier
-CMD [ "uwsgi", "--ini", "app.ini" ]
+COPY . /app

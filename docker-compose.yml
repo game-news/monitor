@@ -1,6 +1,21 @@
 version: "3.7"
 
 services:
+  flask:
+    image: plrom.niracler.com:5009/flask-web
+    networks:
+      - spider
+    command: gunicorn wsgi:app --bind 0.0.0.0:5555 -w4
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+          - "node.hostname == niracler-pc"
+
   redis:
     image: redis
     networks:
