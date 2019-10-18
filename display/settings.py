@@ -13,10 +13,11 @@ class BaseConfig(object):
 
     MONGODB_SETTINGS = {
         'db': 'spider',
-        'host': 'mongodb://root:123456@plrom.niracler.com:27017/spider?authSource=admin'
+        'host': os.getenv('MONGO_URI')
     }
 
-    MONGO_URI = 'mongodb://root:123456@plrom.niracler.com:27017/spider?authSource=admin'
+    MONGO_URI = os.getenv('MONGO_URI')
+    print(MONGO_URI)
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.db')

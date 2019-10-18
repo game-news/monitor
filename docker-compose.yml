@@ -31,7 +31,7 @@ services:
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - "node.hostname == niracler-pc"
+          - "node.hostname == spider-1"
     labels:
       traefik.docker.network: spider
       traefik.port: 6379
@@ -50,7 +50,7 @@ services:
       endpoint_mode: dnsrr
       placement:
         constraints:
-          - "node.hostname == niracler-pc"
+          - "node.hostname == spider-1"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123456
