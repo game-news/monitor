@@ -20,6 +20,7 @@ $ make network # 构建网络
 $ make spider-nginx # 构建 nginx 反向代理
 $ make scrapyd-image # 构建并上传scrapyd镜像
 $ make webui-image # 构建并上传webui镜像
+$ make flask-web-image
 $ make spider
 ```
 

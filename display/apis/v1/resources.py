@@ -36,12 +36,12 @@ class Entity(MethodResource):
             results.append(dict(i))
 
         if page > 1:
-            previous = "http://plrom.niracler.com:5555/api/entity?page={}".format(page-1)
+            previous = "http://test.niracler.com:5555/api/entity?page={}".format(page-1)
         else:
             previous = None
 
         if page < math.ceil(count/per_page):
-            next = "http://plrom.niracler.com:5555/api/entity?page={}".format(page+1)
+            next = "http://test.niracler.com:5555/api/entity?page={}".format(page+1)
         else:
             next = None
 
@@ -82,7 +82,7 @@ class MongoMonitor(MethodResource):
 
 class RedisMonitor(MethodResource):
     def get(self):
-        client = redis.Redis(host='plrom.niracler.com', port='6379', password='123456')
+        client = redis.Redis(host='test.niracler.com', port='6379', password='123456')
         keys = client.keys()
         results = []
 

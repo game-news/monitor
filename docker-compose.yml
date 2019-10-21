@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   flask:
-    image: plrom.niracler.com:5009/flask-web
+    image: test.niracler.com:5009/flask-web
     networks:
       - spider
     command: gunicorn wsgi:app --bind 0.0.0.0:5555 -w4
@@ -59,7 +59,7 @@ services:
       traefik.port: 27017
 
   webui:
-    image: plrom.niracler.com:5009/webui
+    image: test.niracler.com:5009/webui
     networks:
       - spider
     volumes:
@@ -76,7 +76,7 @@ services:
           - "node.hostname == spider-1"
 
   scrapyd-1:
-    image: plrom.niracler.com:5009/scrapyd
+    image: test.niracler.com:5009/scrapyd
     networks:
       - spider
     volumes:
@@ -91,7 +91,7 @@ services:
         constraints:
           - "node.hostname == spider-1"
   scrapyd-2:
-    image: plrom.niracler.com:5009/scrapyd
+    image: test.niracler.com:5009/scrapyd
     networks:
       - spider
     volumes:
@@ -106,7 +106,7 @@ services:
         constraints:
           - "node.hostname == spider-2"
   scrapyd-3:
-    image: plrom.niracler.com:5009/scrapyd
+    image: test.niracler.com:5009/scrapyd
     networks:
       - spider
     volumes:
@@ -121,7 +121,7 @@ services:
         constraints:
           - "node.hostname == spider-3"
   scrapyd-4:
-    image: plrom.niracler.com:5009/scrapyd
+    image: test.niracler.com:5009/scrapyd
     networks:
       - spider
     volumes:

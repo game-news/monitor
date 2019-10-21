@@ -19,15 +19,15 @@ spider:
 	docker stack deploy -c docker-compose.yml spider
 
 flask-web-image:
-	docker build -t "plrom.niracler.com:5009/flask-web" .
-	docker push "plrom.niracler.com:5009/flask-web"
+	docker build -t "test.niracler.com:5009/flask-web" .
+	docker push "test.niracler.com:5009/flask-web"
 
 scrapyd-image:
-	docker build -t "plrom.niracler.com:5009/scrapyd" scrapyd
-	docker push "plrom.niracler.com:5009/scrapyd"
+	docker build -t "test.niracler.com:5009/scrapyd" scrapyd
+	docker push "test.niracler.com:5009/scrapyd"
 
 webui-image:
-	docker build -t "plrom.niracler.com:5009/webui" webui
-	docker push "plrom.niracler.com:5009/webui"
+	docker build -t "test.niracler.com:5009/webui" webui
+	docker push "test.niracler.com:5009/webui"
 
 
