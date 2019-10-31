@@ -8,12 +8,16 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASK_DEBUG = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
+    JSON_AS_ASCII = False
+    DSN = os.getenv('DSN')
 
     MONGODB_SETTINGS = {
         'db': 'spider',
-        'host': 'mongodb://root:123456@centos-l5-vm-01.niracler.com:27017/spider?authSource=admin'
+        'host': os.getenv('MONGO_URI')
     }
 
+    MONGO_URI = os.getenv('MONGO_URI')
+    print(MONGO_URI)
 
 class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.db')

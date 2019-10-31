@@ -1,20 +1,27 @@
 # monitor
 监控模块, 基于[scrapydweb](https://github.com/my8100/scrapydweb)
 
+## 自定义监控模块的安装及启动
+
+```shell script
+$ flask run --port=5555 --host=0.0.0.0
+```
+
 ## 效果图
 
 ![scrapydweb](docs/img/scrapydweb.png)
 
-## 安装及启动
+## 爬虫监控的安装及启动
 
 ### 使用 docker swarm 模式启动
 
-```bash
-$make network # 构建网络
-$make spider-nginx # 构建 nginx 反向代理
-$make scrapyd-image # 构建并上传scrapyd镜像
-$make webui-image # 构建并上传webui镜像
-$make spider
+```shell script
+$ make network # 构建网络
+$ make spider-nginx # 构建 nginx 反向代理
+$ make scrapyd-image # 构建并上传scrapyd镜像
+$ make webui-image # 构建并上传webui镜像
+$ make flask-web-image
+$ make spider
 ```
 
 ## 可能需要的操作
@@ -48,7 +55,7 @@ redis
 
 ```bash
 $sudo pacman -S redis # 安装redis
-$redis-cli -h centos-l5-vm-01.niracler.com  -p 6379 -a 123456
+$redis-cli -h plrom.niracler.com  -p 6379 -a 123456
 $SET runoobkey redis  #OK
 $redis 127.0.0.1:6379> GET runoobkey #"redis"
 ```
@@ -103,3 +110,10 @@ systemctl restart docker
 - [分布式网络数据抓取系统设计与实现](https://www.jianshu.com/p/fb028ad74798)
 - [分布式爬虫的部署之Scrapyd分布式部署](https://juejin.im/post/5b0e1a8ff265da092100709f)
 - [Scrapyd手册](https://scrapyd.readthedocs.io/en/stable/install.html)
+- [Flask-RESTful](https://flask-restful.readthedocs.io/en/latest/index.html)
+- [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
+- [What is the difference between a string and a byte string?](https://stackoverflow.com/questions/6224052/what-is-the-difference-between-a-string-and-a-byte-string/31322359)
+- [flask-apispec](https://flask-apispec.readthedocs.io)
+- [TypeError: ObjectId('') is not JSON serializable](https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable)
+- [python的取整函数：向上取整，向下取整，四舍五入取整](https://blog.csdn.net/guizaijianchic/article/details/71191807)
+- ["Docker-composing" a Python 3 Flask App Line-by-Line](https://medium.com/bitcraft/docker-composing-a-python-3-flask-app-line-by-line-93b721105777)

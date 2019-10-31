@@ -1,11 +1,11 @@
-FROM python:3.6
+FROM python:3.7
 
 USER root
 ENV PYTHONUNBUFFERED=0
 ENV PYTHONIOENCODING=utf-8
 
 RUN pip3 install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip3 install scrapyd logparser -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 install  logparser==0.8.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 COPY requirements.txt ./
 RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple

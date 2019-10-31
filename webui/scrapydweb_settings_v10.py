@@ -43,10 +43,10 @@ PASSWORD = ''
 #   - it's recommended to pass in a tuple of 5 elements.
 #   - e.g. ('', '', '127.0.0.1', '6800', '') or ('username', 'password', 'localhost', '6801', 'group')
 SCRAPYD_SERVERS = [
-    'centos-l5-vm-01.niracler.com:6801',
-    'centos-l5-vm-01.niracler.com:6802',
-    'centos-l5-vm-01.niracler.com:6803',
-    'centos-l5-vm-01.niracler.com:6804',
+    'test.niracler.com:6801',
+    'test.niracler.com:6802',
+    'test.niracler.com:6803',
+    'test.niracler.com:6804',
     # 'username:password@localhost:6801#group',
     # ('username', 'password', 'localhost', '6801', 'group'),
 ]
@@ -316,9 +316,4 @@ DATA_PATH = '/data'
 # 'postgres://username:password@127.0.0.1:5432'
 # 'sqlite:///C:/Users/username'
 # 'sqlite:////home/username'
-DATABASE_URL = {
-    "APSCHEDULER_DATABASE_URI": "sqlite:////data/database/apscheduler.db",
-    "SQLALCHEMY_DATABASE_URI": "sqlite:////data/database/timer_tasks.db",
-    "SQLALCHEMY_BINDS_METADATA": "sqlite:////data/database/metadata.db",
-    "SQLALCHEMY_BINDS_JOBS": "sqlite:////data/database/jobs.db"
-}
+DATABASE_URL = ''
