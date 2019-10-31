@@ -1,5 +1,5 @@
 paramiko==2.6.0
-Pillow==6.1.0
+Pillow==6.2.0
 asn1crypto==0.24.0
 attrs==19.1.0
 Automat==0.7.0
