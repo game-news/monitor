@@ -1,18 +1,20 @@
 package main
 
 import (
+	"net/http"
+
+	"gamenews.niracler.com/monitor/controller"
 	"gamenews.niracler.com/monitor/service"
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	service.ConnectDB()
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
 
-	r.Run()
+	router := controller.MapRoutes()
+
+	server := &http.Server{
+		Addr:    "0.0.0.0:8001",
+		Handler: router,
+	}
+	server.ListenAndServe()
 }

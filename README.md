@@ -21,4 +21,6 @@ go mod download
 ## 参考资源
 
 - [gin官方文档](https://gin-gonic.com/zh-cn/docs/)
-- [PostgreSQL client and ORM for Golang](https://github.com/go-pg/pg)
+- [Pure Go Postgres driver for database/sql](http://godoc.org/github.com/lib/pq)
+- [Annotated: Golang Projects - Pipe](https://github.com/hhstore/blog/issues/129)
+- [Gin实践 连载二 搭建Blog API's（一）](https://segmentfault.com/a/1190000013297683)
