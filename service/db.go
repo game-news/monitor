@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"gamenews.niracler.com/monitor/model"
 	"gamenews.niracler.com/monitor/setting"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -44,10 +45,19 @@ func ConnectDB() {
 		return tablePrefix + defaultTableName
 	}
 
+	// db表迁移:
+	if err = db.AutoMigrate(&model.Game{}).Error; nil != err {
+		log.Fatal("auto migrate tables failed: " + err.Error())
+	}
+
 	db.SingularTable(true)
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
 	// db.LogMode(model.Conf.ShowSQL)
+}
+
+func GetDB() *gorm.DB {
+	return db
 }
 
 func CloseDB() {
