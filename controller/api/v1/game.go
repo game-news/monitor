@@ -6,14 +6,15 @@ import (
 
 	"gamenews.niracler.com/monitor/model"
 	"gamenews.niracler.com/monitor/service"
-	"gamenews.niracler.com/monitor/setting"
-	"gamenews.niracler.com/monitor/util"
 	"github.com/gin-gonic/gin"
+	"github.com/unknwon/com"
 )
 
 func GetGames(c *gin.Context) {
+	page, _ := com.StrTo(c.DefaultQuery("p", "1")).Int()
+	pageSize, _ := com.StrTo(c.DefaultQuery("page_size", "16")).Int()
 	maps := make(map[string]interface{})
-	count, games := service.GetGames(util.GetPage(c), setting.PageSize, maps)
+	count, games := service.GetGames(page, pageSize, maps)
 
 	c.JSON(http.StatusOK, gin.H{
 		"count":   count,
