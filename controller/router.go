@@ -2,18 +2,22 @@ package controller
 
 import (
 	v1 "gamenews.niracler.com/monitor/controller/api/v1"
+	"gamenews.niracler.com/monitor/middleware"
 	"gamenews.niracler.com/monitor/setting"
 	"github.com/gin-gonic/gin"
 )
 
 func MapRoutes() *gin.Engine {
 	ret := gin.New()
+	ret.Use(middleware.CORS())
 
 	ret.Use(gin.Logger())
 
 	ret.Use(gin.Recovery())
 
 	gin.SetMode(setting.RunMode)
+
+	ret.Static("/images/", setting.ImageSavePath)
 
 	apiv1 := ret.Group("/api/v1")
 	apiv1.GET("/game", v1.GetGames)

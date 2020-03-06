@@ -46,11 +46,11 @@ func ConnectDB() {
 	}
 
 	// db表迁移:
+	db.SingularTable(true)
 	if err = db.AutoMigrate(&model.Game{}).Error; nil != err {
 		log.Fatal("auto migrate tables failed: " + err.Error())
 	}
 
-	db.SingularTable(true)
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
 	// db.LogMode(model.Conf.ShowSQL)

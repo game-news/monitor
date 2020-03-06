@@ -10,7 +10,8 @@ import (
 var (
 	Cfg *ini.File
 
-	RunMode string
+	RunMode       string
+	ImageSavePath string
 
 	HTTPPort     int
 	ReadTimeout  time.Duration
@@ -53,6 +54,7 @@ func LoadApp() {
 		log.Fatalf("Fail to get section 'app': %v", err)
 	}
 
+	ImageSavePath = sec.Key("IMAGE_SAVE_PATH").MustString("media/images/")
 	JwtSecret = sec.Key("JWT_SECRET").MustString("!@)*#)!@U#@*!@!)")
 	PageSize = sec.Key("PAGE_SIZE").MustInt(10)
 }

@@ -1,15 +1,16 @@
 package util
 
 import (
+	"gamenews.niracler.com/monitor/setting"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 )
 
 func GetPage(c *gin.Context) int {
 	result := 0
-	page, _ := com.StrTo(c.Query("page")).Int()
+	page, _ := com.StrTo(c.Query("p")).Int()
 	if page > 0 {
-		result = (page - 1) * settings.PageSize
+		result = (page - 1) * setting.PageSize
 	}
 
 	return result
