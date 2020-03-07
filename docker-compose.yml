@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  web:
+    container_name: monitor
+    build: .
+    ports:
+      - "8001:8001"
+    volumes:
+      - "/home/niracler/work/media/images:/media/images"
+    restart: always
+
+  monitor-frpc:
+    image: snowdreamtech/frpc
+    container_name: monitor_frpc
+    volumes:
+      - "./setting/frpc.ini:/etc/frp/frpc.ini"
+    restart: always
+
+networks:
+  default:
+    external:
+      name: gamenews_network
