@@ -1,25 +1,19 @@
-# Dockerfile-flask
-# We simply inherit the Python 3 image. This image does
-# not particularly care what OS runs underneath
-FROM python:3.7
+ FROM golang:1.13-alpine
 
-# Set an environment variable with the directory
-# where we'll be running the app
-ENV APP /app
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN apk add --no-cache gcc musl-dev git
 
-# Create the directory and instruct Docker to operate
-# from there from now on
-RUN mkdir $APP
-WORKDIR $APP
+WORKDIR /go/src/monitor
 
-# Expose the port uWSGI will listen on
-EXPOSE 5555
+RUN export GO111MODULE=on
+RUN export GOPROXY=https://goproxy.io,direct
 
-# Copy the requirements file in order to install
-# Python dependencies
-COPY requirements.txt .
+# 下载依赖
+COPY go.mod go.mod
+RUN go mod download
 
-# Install Python dependencies
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+COPY . .
 
-COPY . /app
+EXPOSE 8001
+
+ENTRYPOINT ["go", "run", "main.go"]

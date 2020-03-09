@@ -1,158 +1,23 @@
-version: "3.7"
+version: "2"
 
 services:
-  flask:
-    image: test.niracler.com:5009/flask-web
-    networks:
-      - spider
-    command: gunicorn wsgi:app --bind 0.0.0.0:5555 -w4
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == niracler-pc"
+  web:
+    container_name: monitor
+    build: .
+    ports:
+      - "8001:8001"
+    volumes:
+      - "/home/niracler/work/media/images:/media/images"
+    restart: always
 
-  redis:
-    image: redis
-    networks:
-      - spider
+  monitor-frpc:
+    image: snowdreamtech/frpc
+    container_name: monitor_frpc
     volumes:
-      - redis_data:/data
-    command: --appendonly yes --requirepass "123456"
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-1"
-    labels:
-      traefik.docker.network: spider
-      traefik.port: 6379
-
-  mongo:
-    image: mongo
-    networks:
-      - spider
-    volumes:
-      - mongo_data:/data/db
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-1"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 123456
-    labels:
-      traefik.docker.network: spider
-      traefik.port: 27017
-
-  webui:
-    image: test.niracler.com:5009/webui
-    networks:
-      - spider
-    volumes:
-      - projects:/projects
-      - webui_data:/data
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-1"
-
-  scrapyd-1:
-    image: test.niracler.com:5009/scrapyd
-    networks:
-      - spider
-    volumes:
-      - scrapyd1_root:/root
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-1"
-  scrapyd-2:
-    image: test.niracler.com:5009/scrapyd
-    networks:
-      - spider
-    volumes:
-      - scrapyd2_root:/root
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-2"
-  scrapyd-3:
-    image: test.niracler.com:5009/scrapyd
-    networks:
-      - spider
-    volumes:
-      - scrapyd3_root:/root
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == spider-3"
-  scrapyd-4:
-    image: test.niracler.com:5009/scrapyd
-    networks:
-      - spider
-    volumes:
-      - scrapyd4_root:/root
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      endpoint_mode: dnsrr
-      placement:
-        constraints:
-          - "node.hostname == niracler-pc"
-
-volumes:
-  redis_data:
-  mongo_data:
-  projects:
-     driver: local
-     driver_opts:
-       type: none
-       o: bind
-       device: /projects
-  webui_data:
-  scrapyd1_root:
-  scrapyd2_root:
-  scrapyd3_root:
-  scrapyd4_root:
-
+      - "./setting/frpc.ini:/etc/frp/frpc.ini"
+    restart: always
 
 networks:
-  spider:
-    external: true
-    name: spider
+  default:
+    external:
+      name: gamenews_network
